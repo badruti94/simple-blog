@@ -52,7 +52,7 @@ exports.login = async (req, res, next) => {
             throw error
         }
 
-        const { id: userId, role } = userFound
+        const { id: userId, role, name } = userFound
         const secretKey = process.env.SECRET_KEY || 'secret'
         const token = jwt.sign({ userId, role }, secretKey)
 
@@ -61,6 +61,7 @@ exports.login = async (req, res, next) => {
             data: {
                 user_id: userId,
                 username: req.body.username,
+                name,
                 role,
             },
             token

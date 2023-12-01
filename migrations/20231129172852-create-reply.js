@@ -2,27 +2,28 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('user_like_posts', {
+    await queryInterface.createTable('replies', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      body: {
+        type: Sequelize.TEXT
+      },
       user_id: {
         type: Sequelize.INTEGER,
-        allowNull: false,
         references: {
           model: 'users',
-          key: 'id',
+          key: 'id'
         }
       },
-      post_id: {
+      comment_id: {
         type: Sequelize.INTEGER,
-        allowNull: false,
         references: {
-          model : 'posts',
-          key: 'id',
+          model: 'comments',
+          key: 'id'
         },
         onDelete: 'CASCADE'
       },
@@ -37,6 +38,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('user_like_posts');
+    await queryInterface.dropTable('replies');
   }
 };

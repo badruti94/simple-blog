@@ -12,12 +12,19 @@ module.exports = {
       title: {
         type: Sequelize.STRING
       },
-      body: {
+      slug: {
         type: Sequelize.STRING
+      },
+      body: {
+        type: Sequelize.TEXT
       },
       view: {
         type: Sequelize.INTEGER,
         defaultValue: 0,
+      },
+      publish: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: true,
       },
       user_id: {
         type: Sequelize.INTEGER,

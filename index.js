@@ -17,6 +17,11 @@ app.use((error, req, res, next) => {
     const message = error.message
     const data = error.data
 
+    if (error.name === 'SequelizeUniqueConstraintError') {
+        errorCode = 400
+        message = error.errors[0].message
+    }
+
     res.status(errorCode).send({ message, data })
 })
 

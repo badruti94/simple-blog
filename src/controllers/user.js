@@ -7,7 +7,7 @@ const {
 
 exports.getPostsByUsername = async (req, res, next) => {
     try {
-        const { page = 1, perPage = 4 } = req.query
+        const { page = 1, perPage = 10 } = req.query
         const posts = await postModel.findAll({
             include: {
                 model: userModel,
@@ -33,7 +33,7 @@ exports.getPostsByUsername = async (req, res, next) => {
 
 exports.getSavedPost = async (req, res, next) => {
     try {
-        const { page = 1, perPage = 4 } = req.query
+        const { page = 1, perPage = 10 } = req.query
         const userSavePosts = await user_save_postModel.findAll({
             include: {
                 model: postModel,

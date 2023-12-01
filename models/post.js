@@ -15,12 +15,22 @@ module.exports = (sequelize, DataTypes) => {
         as: 'user',
         foreignKey: 'user_id'
       })
+      post.hasMany(models.user_like_post, {
+        as: 'user_like_post',
+        foreignKey: 'post_id'
+      })
+      post.hasMany(models.comment, {
+        as: 'comment',
+        foreignKey: 'post_id'
+      })
     }
   }
   post.init({
     title: DataTypes.STRING,
+    slug: DataTypes.STRING,
     body: DataTypes.STRING,
     view: DataTypes.INTEGER,
+    publish: DataTypes.BOOLEAN,
     user_id: DataTypes.INTEGER
   }, {
     sequelize,
