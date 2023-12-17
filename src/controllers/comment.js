@@ -29,7 +29,8 @@ exports.getFindReplyQuery = (commentId) => {
         where: {
             comment_id: commentId
         },
-        group: ['reply.id', 'user.id']
+        group: ['reply.id', 'user.id'],
+        order: [['createdAt', 'ASC']]
     }
 
     return query
